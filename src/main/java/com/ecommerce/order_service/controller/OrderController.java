@@ -58,6 +58,6 @@ public class OrderController {
     @DeleteMapping("/{id}")
     public String deleteOrder(@PathVariable Long id) {
         service.deleteOrder(id);
-        return "Order Deleted Successfully: "+id;
+        return "Order item Deleted Successfully: "+id;
     }
 }

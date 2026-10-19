@@ -38,19 +38,26 @@ private ProductService service;
 		return ResponseEntity.ok().body(service.getProducts());
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<Product> getProduct(@PathVariable long id){
-		
-		return ResponseEntity.ok().body(service.getProduct(id));
-	}
 
+
+	@GetMapping("/products/{id}")
+	public ResponseEntity<Product> getProduct(@PathVariable long id) {
+	    Product product = service.getProduct(id);
+
+	    if (product == null) {
+	        return ResponseEntity.notFound().build();
+	    }
+
+	    return ResponseEntity.ok(product);
+	}
+	
 	@PutMapping("/product")
 	public ResponseEntity<Product> updateProducts(Product product){
 		
 		return ResponseEntity.ok().body(service.updateProducts(product));
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/product/{id}")
 	public String deleteProduct(@PathVariable int id){
 		service.deleteProduct(id);
 		
